@@ -1,7 +1,7 @@
 const JoinRoomForm = () => {
   return (
     <form className="form col-md-12 mt-5">
-     
+      
       <div className="form-group">
         <input
           type="text"
