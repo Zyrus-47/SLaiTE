@@ -80,6 +80,7 @@ const RoomPage = () => {
             <WhiteBoard canvasRef={canvasRef} ctxRef={ctxRef}
             elements={elements}
             setElements={setElements}
+            tool={tool}
             />
       </div>
     </div>
