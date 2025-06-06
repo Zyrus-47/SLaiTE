@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./index.css";
 import WhiteBoard from "../../components/WhiteBoard";
 
 const RoomPage = () => {
+
+  const canvasRef =useRef(null) ;
+  const ctxRef =useRef(null);
   const [tool, setTool] = useState("pencil");
   const [color, setColor] = useState("black");
+  const [elements,setElements]=useState([]);
 
   return (
     <div className="container">
@@ -20,6 +24,7 @@ const RoomPage = () => {
             <input
               type="radio"
               id="pencil"
+              checked={tool==="pencil"}
               name="tool"
               value="pencil"
               onChange={(e) => setTool(e.target.value)}
@@ -31,6 +36,7 @@ const RoomPage = () => {
               type="radio"
               id="line"
               name="tool"
+              checked={tool==="line"}
               value="line"
               onChange={(e) => setTool(e.target.value)}
             />
@@ -39,6 +45,7 @@ const RoomPage = () => {
             <label htmlFor="rect">Rectangle</label>
             <input
               type="radio"
+              checked={tool==="rect"}
               id="rect"
               name="tool"
               value="rect"
@@ -70,7 +77,10 @@ const RoomPage = () => {
         </div>
       </div>
       <div className="col-md-10  mx-auto mt-4 canvas-box">
-            <WhiteBoard/>
+            <WhiteBoard canvasRef={canvasRef} ctxRef={ctxRef}
+            elements={elements}
+            setElements={setElements}
+            />
       </div>
     </div>
   );
