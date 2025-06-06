@@ -93,7 +93,7 @@ const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool }) => {
       ]);
     }
 
-    setIsDrawing(true); // ✅ this was incorrectly placed inside rect condition
+    setIsDrawing(true); 
   };
 
   const handleMouseMove = (e) => {
