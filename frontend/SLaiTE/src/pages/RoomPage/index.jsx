@@ -9,6 +9,30 @@ const RoomPage = () => {
   const [tool, setTool] = useState("pencil");
   const [color, setColor] = useState("black");
   const [elements,setElements]=useState([]);
+  const [history,setHistory]= useState([]);
+
+  const handleClearCanvas=()=>{
+    const canvas =canvasRef.current;
+    const ctx =canvas.getContext("2d");
+    ctx.fillRect ="white";
+    ctx.clearRect(0,0, canvasRef.current.width, canvasRef.current.height);
+    setElements([]);
+
+  }
+  const undo=()=>{
+    setHistory((prevHistory)=>[...prevHistory,elements[elements.length-1]]);
+    setElements(
+      (prevElements)=>prevElements.slice(0,prevElements.length-1)
+    );
+  }
+  const redo=()=>{
+    setElements((prevElements)=>[...prevElements,history[history.length-1]
+  ]);
+    setHistory(
+      (prevHistory)=>prevHistory.slice(0,prevHistory.length-1)
+    );
+  }
+
 
   return (
     <div className="container">
@@ -67,19 +91,26 @@ const RoomPage = () => {
 
         
         <div className="d-flex gap-3 ms-4">
-          <button className="btn btn-primary mt-1">Undo</button>
-          <button className="btn btn-outline-primary mt-1">Redo</button>
+          <button className="btn btn-primary mt-1"
+           disabled={elements.length===0}
+           onClick={()=> undo()}
+          >Undo</button>
+          <button className="btn btn-outline-primary mt-1"
+           disabled={history.length<1}
+           onClick={()=> redo()}
+          >Redo</button>
         </div>
 
         
         <div>
-          <button className="btn btn-danger mt-1">Clear Canvas</button>
+          <button className="btn btn-danger mt-1" onClick={handleClearCanvas}>Clear Canvas</button>
         </div>
       </div>
       <div className="col-md-10  mx-auto mt-4 canvas-box">
             <WhiteBoard canvasRef={canvasRef} ctxRef={ctxRef}
             elements={elements}
             setElements={setElements}
+            color={color}
             tool={tool}
             />
       </div>
