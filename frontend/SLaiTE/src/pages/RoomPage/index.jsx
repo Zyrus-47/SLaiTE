@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import "./index.css";
 import WhiteBoard from "../../components/WhiteBoard";
 
-const RoomPage = () => {
+const RoomPage = ({user,socket}) => {
 
   const canvasRef =useRef(null) ;
   const ctxRef =useRef(null);
@@ -39,8 +39,9 @@ const RoomPage = () => {
       <h1 className="text-center py-4">SLaiTE{" "} 
         <span className="text-primary"> [Users online:]</span>
       </h1> 
-
-      <div className="d-flex justify-content-between align-items-center flex-wrap px-5 py-3 gap-5">
+      {
+        user?.presenter &&(
+          <div className="d-flex justify-content-between align-items-center flex-wrap px-5 py-3 gap-5">
         
         <div className="d-flex gap-2">
           <div className="d-flex gap-1 align-items-center">
@@ -106,12 +107,19 @@ const RoomPage = () => {
           <button className="btn btn-danger mt-1" onClick={handleClearCanvas}>Clear Canvas</button>
         </div>
       </div>
+
+        )
+      }
+
+      
       <div className="col-md-10  mx-auto mt-4 canvas-box">
             <WhiteBoard canvasRef={canvasRef} ctxRef={ctxRef}
             elements={elements}
             setElements={setElements}
             color={color}
             tool={tool}
+            user={user}
+            socket={socket}
             />
       </div>
     </div>
