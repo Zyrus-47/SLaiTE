@@ -17,7 +17,7 @@ const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool, color, use
     };
   }, [socket]);
 
-  // 👥 For non-presenter users (view-only)
+ 
   if (!user?.presenter) {
     return (
       <div
