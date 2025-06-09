@@ -32,8 +32,6 @@ const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool, color, use
       </div>
     );
   }
-
-  // 🎨 Initialize canvas on mount
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -86,7 +84,7 @@ const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool, color, use
       }
     });
 
-    // 🛰️ Emit updated whiteboard image
+    
     const canvasImage = canvasRef.current.toDataURL();
     socket.emit("whiteboardData", canvasImage);
   }, [elements]);
