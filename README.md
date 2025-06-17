@@ -1,4 +1,4 @@
-# slAIte
+# SLaiTE
 
 **slAIte** is a real-time whiteboard sharing web application that enables users to collaboratively draw, brainstorm, and communicate ideas visually — all in real time. It supports multi-user interaction within shared rooms using WebSocket technology.
 
