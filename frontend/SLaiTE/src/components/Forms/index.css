@@ -1,4 +1,10 @@
 .form-box {
   width: 400px;
 }
-
+body {
+  background-image: url('background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+}
